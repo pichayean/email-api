@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: email-service
+spec:
+  selector:
+    app: email-pod
+  ports:
+  - port: 80
+    nodePort: 30504
+    protocol: TCP
+    targetPort: 80
+  type: NodePort
+  # type: LoadBalancer
+  # externalIPs:
+  # - 194.233.73.42
+  
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-deployment
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: email-pod
+  template:
+    metadata:
+      labels:
+        app: email-pod
+    spec:
+      containers:
+      - name: email-container
+        image: pichayean/email:latest
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "100m"
+        env:
+        - name: "ASPNETCORE_ENVIRONMENT"
+          value: Production
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 80
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+        ports:
+        - containerPort: 80
+          protocol: TCP
+          
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: email-api-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: email-api.trustmacus.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: email-service
+            port:
+              number: 80

@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "msJ5QcOiF3jaPQS0P5tDTxFBfVZhdmSXgR75QWqFZLUJOf4e0qr+gYijwjBlQNZtxsBeaBmcp9S8vzxjSD3c8g==",
+  "success": true,
+  "projectFilePath": "D:\\workspaces\\csharp\\email\\email-api\\email-api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Macus\\.nuget\\packages\\mailkit\\3.4.2\\mailkit.3.4.2.nupkg.sha512",
+    "C:\\Users\\Macus\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Macus\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Macus\\.nuget\\packages\\mimekit\\3.4.2\\mimekit.3.4.2.nupkg.sha512",
+    "C:\\Users\\Macus\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
+    "C:\\Users\\Macus\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\Macus\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\Macus\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\Macus\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
+    "C:\\Users\\Macus\\.nuget\\packages\\system.formats.asn1\\6.0.0\\system.formats.asn1.6.0.0.nupkg.sha512",
+    "C:\\Users\\Macus\\.nuget\\packages\\system.security.cryptography.pkcs\\6.0.0\\system.security.cryptography.pkcs.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
