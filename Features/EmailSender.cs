@@ -8,48 +8,32 @@ namespace email_api.Features;
 
 public class EmailSender
 {
-    const string _secrectKey = "";
-    const string _emailFrom = "pichayeanyensiri.work@gmail.com";
-    private readonly string[] _emailTo;
-    private readonly bool _usedTemplate;
-    private string _bodyPlainText = "";
-    private Dictionary<string, string>? _embeddedImages;
-    private string _subject = "";
+    private readonly StmpSettings _settings;
+    private readonly SendingEmail _sendingEmail;
 
-    public EmailSender(bool usedTemplate
-        , string[] emailTo
-        , string subject
-        , string plainText
-        , Dictionary<string, string>? embeddedImages = null)
+    public EmailSender(SendingEmail sendingEmail
+        , StmpSettings settings)
     {
-        _usedTemplate = usedTemplate;
-        _bodyPlainText = plainText;
-        _subject = subject;
-        _emailTo = emailTo;
-        _embeddedImages = embeddedImages;
+        _sendingEmail = sendingEmail;
+        _settings = settings;
     }
 
     public void Send()
     {
         var email = new MimeMessage();
-        email.From.Add(MailboxAddress.Parse($"{_emailFrom}"));
-        foreach (var e in _emailTo)
+        email.From.Add(MailboxAddress.Parse($"{_sendingEmail.EmailFrom}"));
+        foreach (var e in _sendingEmail.EmailsTo)
             email.To.Add(MailboxAddress.Parse(e));
-        email.Subject = _subject;
-        if (_usedTemplate)
-        {
-            var builder = BuildBody(_bodyPlainText, _embeddedImages);
-            email.Body = builder.ToMessageBody();
-        }
+        email.Subject = _sendingEmail.Subject;
+        if (_sendingEmail.UsedTemplate)
+            email.Body = BuildBody(_sendingEmail.BodyPlainText, _sendingEmail.EmbeddedImages).ToMessageBody();
         else
-        {
-            email.Body = new TextPart(TextFormat.Html) { Text = _bodyPlainText };
-        }
-        
+            email.Body = new TextPart(TextFormat.Html) { Text = _sendingEmail.BodyPlainText };
+
         using (var smtp = new SmtpClient())
         {
-            smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-            smtp.Authenticate($"{_emailFrom}", _secrectKey);
+            smtp.Connect(_settings.Stmp, _settings.Port, SecureSocketOptions.StartTls);
+            smtp.Authenticate($"{_settings.EmailUser}", _settings.SecrectKey);
             smtp.Send(email);
             smtp.Disconnect(true);
         }
@@ -60,7 +44,7 @@ public class EmailSender
         var builder = new BodyBuilder();
         if (embeddedImages is not null)
         {
-            embeddedImages.ForEach((key, base64) => 
+            embeddedImages.ForEach((key, base64) =>
             {
                 var image = builder.LinkedResources.Add(key, Convert.FromBase64String(base64));
                 image.ContentId = MimeUtils.GenerateMessageId();

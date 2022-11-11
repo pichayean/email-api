@@ -1,0 +1,87 @@
+{
+	"info": {
+		"_postman_id": "03aec434-68e6-4491-ad74-6f640eabbcda",
+		"name": "Email",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createToken",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjdiNGUwOWEzLTc3NWYtNDhlZi1hNWEzLWMwYWEzZjNhZTBmMiIsInN1YiI6ImpveWRpcCIsImVtYWlsIjoiam95ZGlwIiwianRpIjoiMDk0MzdiZGQtYjNjYi00Y2ExLWI4YTEtMmQ2NTgzMmUzYmM0IiwibmJmIjoxNjY4MTgwMzgxLCJleHAiOjE2NjgxODEyODEsImlhdCI6MTY2ODE4MDM4MSwiaXNzIjoiaHR0cHM6Ly90cnVzdG1hY3VzLmNvbS8iLCJhdWQiOiJodHRwczovL3RydXN0bWFjdXMuY29tLyJ9._QocBkC38o3iD3YjKWax9RlbPsL7yBmpPCUMpmo1m-SwWuozMJ_UXd9yFgQlAhnz3Ke2po-eLuCqmGwsnyfDUg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userName\": \"joydip\",\r\n  \"password\": \"joydip123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5166/security/createtoken",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5166",
+					"path": [
+						"security",
+						"createtoken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sendEmail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjdiNGUwOWEzLTc3NWYtNDhlZi1hNWEzLWMwYWEzZjNhZTBmMiIsInN1YiI6ImpveWRpcCIsImVtYWlsIjoiam95ZGlwIiwianRpIjoiMDk0MzdiZGQtYjNjYi00Y2ExLWI4YTEtMmQ2NTgzMmUzYmM0IiwibmJmIjoxNjY4MTgwMzgxLCJleHAiOjE2NjgxODEyODEsImlhdCI6MTY2ODE4MDM4MSwiaXNzIjoiaHR0cHM6Ly90cnVzdG1hY3VzLmNvbS8iLCJhdWQiOiJodHRwczovL3RydXN0bWFjdXMuY29tLyJ9._QocBkC38o3iD3YjKWax9RlbPsL7yBmpPCUMpmo1m-SwWuozMJ_UXd9yFgQlAhnz3Ke2po-eLuCqmGwsnyfDUg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"emailFrom\": \"suthatip.por@gmial.com\",\r\n  \"emailsTo\": [\r\n    \"pichayeanyensiri@gmail.com\"\r\n  ],\r\n  \"usedTemplate\": true,\r\n  \"subject\": \"test\",\r\n  \"embeddedImages\": null,\r\n  \"bodyPlainText\": \"<table width='100%' ><tbody ><tr ><td class='wrapper' width='600' align='center' style='padding:0;margin:0;border:none;border-spacing:0px;border-collapse:collapse;vertical-align:top;padding-left:10px;padding-right:10px;'><table class='section header' cellpadding='0' cellspacing='0' width='600' style='padding:0;margin:0;border:none;border-spacing:0px;border-collapse:initial;vertical-align:top;'>                        <tr >                        <td  style='padding:0;margin:0;border: 1px solid #C3CDC9;border-radius:8px;border-spacing:0px;border-collapse:collapse;vertical-align:top;'>                            <table >                            <tbody >                                <tr >                                <td align='center' style='padding-top: 44px;'>                                    <img src='cid:{0}' style='width:100%;display:block;width: 261px;'>                                </td> </tr>       <tr >                                <td align='center' style='width: 800px'>                                    <h2 style='color: #0060AB;text-align: center;'>{title}</h2>                                </td>                                </tr>                                <tr >                                <td align='center' >                                    <p style='width:200px; border-radius: 5px; margin:10;padding:20px;letter-spacing: 5px;background-color: #C9EFF0;font-weight: 600;font-size:24px;text-align: center;font-family:Tahoma, Geneva, Verdana, sans-serif !important;'>                                    {otp}                                    </p>                                </td>                                </tr>                                <tr >                                <td align='center'>                                    <p style='text-align: center;'>                                    รหัสยืนยันตัวตนจะหมดอายุใน <b>{otpexpiretime} นาที</b> <br>                                    <b>ห้ามเปิดเผยรหัสนี้</b>ให้กับบุคลอื่นเด็ดขาด                                    </p>                                </td>                                </tr>                                <tr >                                <td align='center'>                                    <p style='padding: 20px;text-align: center;color: #D45450; font-weight: bold; border-top: 1px solid #C3CDC9; border-bottom: 1px solid #C3CDC9;'>                                    หากคุณไม่ได้ทำรายการนี้ <br>                                    กรุณาติดต่อ Call Center tel:0880880880</p>                                </td>                                </tr>                                <tr >                                <td align='center'>                                    <p style='text-align: center;color: #A09E9E;font-size: medium;'>                                    อีเมลนี้ถูกส่งจากระบบอันโนมัติ กรุณาอย่าตอบกลับ<br>                                    สอบถามรายละเอียด โทร. <b style='text-align: center;color: #357FE0;  text-decoration: underline;'>088-088-0880</b>                                    </p>                                </td>                                </tr>                                <tr >                                <td align='center'>                                    <p style='text-align: center;color: #A09E9E;font-size:x-large'>                                    ติดตามเราได้ที่                                    </p>                                    <a href='https://www.facebook.com/ngerntidlor'>                                    <img width='40px' style='padding: 5px;' src='cid:{1}' >                                    <a href='https://line.me/R/ti/p/@tidlor'>                                    <img width='40px' style='padding: 5px;' src='cid:{2}' >                                    </a>                                </td>               </tr>                                <tr >                                <td align='center'>                                    <p style='text-align: center;color: #A09E9E; padding-bottom: 80px;font-size:small'>                                    บริษัท เงินติดล้อ จำกัด (มหาชน)<br>                                    428 อาคารอารีย์ ฮิลล์ ถนนพหลโยธิน <br>                                 แขวงสามเสนใน เขตพญาไท กรุงเทพมหานครฯ 10400                                    </p>                                </td>                                </tr>                            </tbody>                            </table>                        </td>                        </tr>                    </table>                    </td>                </tr>                </tbody>            </table>\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5166/Email/send",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5166",
+					"path": [
+						"Email",
+						"send"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

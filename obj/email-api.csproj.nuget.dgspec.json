@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\workspaces\\csharp\\email\\email-api\\email-api.csproj": {}
+    "/Users/pichayeanyensiri/workspaces/dotnet/email-api/email-api.csproj": {}
   },
   "projects": {
-    "D:\\workspaces\\csharp\\email\\email-api\\email-api.csproj": {
+    "/Users/pichayeanyensiri/workspaces/dotnet/email-api/email-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\workspaces\\csharp\\email\\email-api\\email-api.csproj",
+        "projectUniqueName": "/Users/pichayeanyensiri/workspaces/dotnet/email-api/email-api.csproj",
         "projectName": "email-api",
-        "projectPath": "D:\\workspaces\\csharp\\email\\email-api\\email-api.csproj",
-        "packagesPath": "C:\\Users\\Macus\\.nuget\\packages\\",
-        "outputPath": "D:\\workspaces\\csharp\\email\\email-api\\obj\\",
+        "projectPath": "/Users/pichayeanyensiri/workspaces/dotnet/email-api/email-api.csproj",
+        "packagesPath": "/Users/pichayeanyensiri/.nuget/packages/",
+        "outputPath": "/Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Macus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/pichayeanyensiri/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,6 +41,10 @@
             "MailKit": {
               "target": "Package",
               "version": "[3.4.2, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.11, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -67,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/6.0.301/RuntimeIdentifierGraph.json"
         }
       }
     }
