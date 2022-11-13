@@ -35,10 +35,8 @@ D:/workspaces/csharp/email/email-api/bin/Debug/net6.0/BouncyCastle.Crypto.dll
 /Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/Debug/net6.0/email-api.csproj.CoreCompileInputs.cache
 /Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/Debug/net6.0/email-api.MvcApplicationPartsAssemblyInfo.cs
 /Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/Debug/net6.0/email-api.MvcApplicationPartsAssemblyInfo.cache
-/Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/Debug/net6.0/email-api.dll
-/Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/Debug/net6.0/refint/email-api.dll
-/Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/Debug/net6.0/email-api.pdb
 /Users/pichayeanyensiri/workspaces/dotnet/email-api/bin/Debug/net6.0/appsettings.json
+/Users/pichayeanyensiri/workspaces/dotnet/email-api/bin/Debug/net6.0/Scripts/Email.postman_collection.json
 /Users/pichayeanyensiri/workspaces/dotnet/email-api/bin/Debug/net6.0/email-api
 /Users/pichayeanyensiri/workspaces/dotnet/email-api/bin/Debug/net6.0/email-api.deps.json
 /Users/pichayeanyensiri/workspaces/dotnet/email-api/bin/Debug/net6.0/email-api.runtimeconfig.json
@@ -62,6 +60,8 @@ D:/workspaces/csharp/email/email-api/bin/Debug/net6.0/BouncyCastle.Crypto.dll
 /Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/Debug/net6.0/staticwebassets.development.json
 /Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/Debug/net6.0/scopedcss/bundle/email-api.styles.css
 /Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/Debug/net6.0/email-api.csproj.CopyComplete
+/Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/Debug/net6.0/email-api.dll
+/Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/Debug/net6.0/refint/email-api.dll
+/Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/Debug/net6.0/email-api.pdb
 /Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/Debug/net6.0/email-api.genruntimeconfig.cache
 /Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/Debug/net6.0/ref/email-api.dll
-/Users/pichayeanyensiri/workspaces/dotnet/email-api/bin/Debug/net6.0/Scripts/Email.postman_collection.json

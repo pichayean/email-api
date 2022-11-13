@@ -29,7 +29,7 @@ public class Security
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var jwtToken = tokenHandler.WriteToken(token);
             var stringToken = tokenHandler.WriteToken(token);
-            Console.Write(stringToken);
+            // Console.Write(stringToken);
             return stringToken;
         }
         return "";

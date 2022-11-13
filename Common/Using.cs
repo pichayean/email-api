@@ -6,6 +6,7 @@ global using Microsoft.Extensions.Configuration;
 global using System.Security.Claims;
 global using System.Text;
 global using System.Text.Json;
+global using email_api.Apis;
 global using email_api.Models;
 global using email_api.Features;
 global using System;
