@@ -6,7 +6,8 @@ builder.Services
     .AddAuthorization()
     .AddSwaggerGen()
     .AddTransient<IApi, EmailApi>()
-    .AddTransient<IApi, SecurityApi>();
+    .AddTransient<IApi, SecurityApi>()
+    .AddTransient<IApi, HealthApi>();
 
 var app = builder.Build();
 app.UseAppCors()

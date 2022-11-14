@@ -785,24 +785,31 @@
     ]
   },
   "packageFolders": {
-    "/Users/pichayeanyensiri/.nuget/packages/": {}
+    "D:\\Users\\cf303425\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/pichayeanyensiri/workspaces/dotnet/email-api/email-api.csproj",
+      "projectUniqueName": "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
       "projectName": "email-api",
-      "projectPath": "/Users/pichayeanyensiri/workspaces/dotnet/email-api/email-api.csproj",
-      "packagesPath": "/Users/pichayeanyensiri/.nuget/packages/",
-      "outputPath": "/Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/",
+      "projectPath": "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
+      "packagesPath": "D:\\Users\\cf303425\\.nuget\\packages\\",
+      "outputPath": "d:\\Workspace\\@github#pichayean\\email-api\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "/Users/pichayeanyensiri/.nuget/NuGet/NuGet.Config"
+        "D:\\Users\\cf303425\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "http://api-micro-dev.ntl.co.th:8081/v3/index.json": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -852,7 +859,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

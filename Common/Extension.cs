@@ -13,6 +13,14 @@ public static class Extensions
         return services.AddCors(options => options.AddPolicy(name: CorsPolicyName, builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
     }
 
+    // public static IServiceCollection AddApis(this IServiceCollection services)
+    // {
+    //     var apis = AppDomain.CurrentDomain.GetAssemblies().SelectMany(s => s.GetTypes()).Where(p => typeof(IApi).IsAssignableFrom(p));
+    //     foreach (var api in apis)
+    //         services.AddTransient(typeof(IApi), api);
+    //     return services;
+    // }
+
     public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuthentication(options =>
