@@ -57,7 +57,7 @@ dlldata.c
 # Benchmark Results
 BenchmarkDotNet.Artifacts/
 
-# .NET
+# .NET Core
 project.lock.json
 project.fragment.lock.json
 artifacts/
@@ -452,5 +452,4 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-Scripts/build
 Scripts/build
