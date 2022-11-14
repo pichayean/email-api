@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj": {}
+    "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj": {}
   },
   "projects": {
-    "D:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj": {
+    "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
+        "projectUniqueName": "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
         "projectName": "email-api",
-        "projectPath": "D:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
+        "projectPath": "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
         "packagesPath": "D:\\Users\\cf303425\\.nuget\\packages\\",
-        "outputPath": "D:\\Workspace\\@github#pichayean\\email-api\\obj\\",
+        "outputPath": "d:\\Workspace\\@github#pichayean\\email-api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
