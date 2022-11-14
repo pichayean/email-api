@@ -34,43 +34,43 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: => ✔✅🏁 Delete deployment
+      - name: => Delete deployment
         uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
           args: delete deployment email-deployment
 
-      - name: ⏱ Sleep for 60 seconds
+      - name: Sleep for 60 seconds
         uses: jakejarvis/wait-action@master
         with:
           time: "60s"
 
-      - name: => ✔✅🏁 Apply deployment
+      - name: => Apply deployment
         uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
           args: apply -f ./Scripts/deployment.yml
 
-      - name: ⏱ Sleep for 120 seconds
+      - name: Sleep for 120 seconds
         uses: jakejarvis/wait-action@master
         with:
           time: "120s"
 
-      - name: => ✔✅🏁 Display deployment
+      - name: => Display deployment
         uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
           args: get deployment
 
-      - name: ⏱ Sleep for 20s seconds
+      - name: Sleep for 20s seconds
         uses: jakejarvis/wait-action@master
         with:
           time: "20s"
 
-      - name: => ✔✅🏁 Display pods
+      - name: => Display pods
         uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
