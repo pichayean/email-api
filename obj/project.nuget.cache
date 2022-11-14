@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vjP7+JV/xLk7CJHeN0tlqoQdSILJUpSIarOlQyYzHJflCAfj0sezfAdjeSJXCXT0b2RbSfjleNbMLYhz6Xz+wQ==",
+  "dgSpecHash": "ae/y07MRDDyqFxITw/Zlv3+B0An58+SF+jV8qZVodUfrCQkHEjs+ZjIYssOCFEzdiQOYVsr/SzVwSGNS4yrrRQ==",
   "success": true,
-  "projectFilePath": "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
+  "projectFilePath": "D:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
   "expectedPackageFiles": [
     "D:\\Users\\cf303425\\.nuget\\packages\\mailkit\\3.4.2\\mailkit.3.4.2.nupkg.sha512",
     "D:\\Users\\cf303425\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.11\\microsoft.aspnetcore.authentication.jwtbearer.6.0.11.nupkg.sha512",
