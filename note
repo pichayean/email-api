@@ -1,0 +1,17 @@
+
+// https://www.npgsql.org/efcore/
+// dotnet ef dbcontext scaffold "Host=144.126.140.118;Database=email;Username=postgres;Password=Ld4t5555" Npgsql.EntityFrameworkCore.PostgreSQL
+Host=144.126.140.118;Database=email;Username=postgres;Password=Ld4t5555
+    // <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
+    
+    // <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.7">
+    //   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    //   <PrivateAssets>all</PrivateAssets>
+    // </PackageReference>
+    
+    // <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.7">
+    //   <PrivateAssets>all</PrivateAssets>
+    //   <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    // </PackageReference>
+// dotnet ef migrations add InitialMigration
+// dotnet ef database update
