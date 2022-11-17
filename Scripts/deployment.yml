@@ -11,17 +11,14 @@ spec:
     protocol: TCP
     targetPort: 80
   type: NodePort
-  # type: LoadBalancer
-  # externalIPs:
-  # - 194.233.73.42
-  
+
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: email-deployment
 spec:
-  replicas: 1 
+  replicas: 1
   selector:
     matchLabels:
       app: email-pod
@@ -35,21 +32,21 @@ spec:
         image: pichayean/email:latest
         resources:
           limits:
-            memory: "512Mi"
-            cpu: "100m"
+            memory: "381Mi"
+            cpu: "80m"
         env:
         - name: "ASPNETCORE_ENVIRONMENT"
           value: Production
-        readinessProbe:
-          httpGet:
-            path: /health/ready
-            port: 80
-          initialDelaySeconds: 30
-          timeoutSeconds: 1
+        # readinessProbe:
+        #   httpGet:
+        #     path: /health/ready
+        #     port: 80
+        #   initialDelaySeconds: 30
+        #   timeoutSeconds: 1
         ports:
         - containerPort: 80
           protocol: TCP
-          
+
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
