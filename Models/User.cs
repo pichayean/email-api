@@ -1,7 +1,7 @@
 namespace email_api.Models;
 
-public class User
+public class UserLogin
 {
-    public string? UserName { get; set; }
-    public string? Password { get; set; }
+    public string UserName { get; set; }
+    public string Password { get; set; }
 }

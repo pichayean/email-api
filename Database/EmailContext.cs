@@ -17,9 +17,11 @@ public partial class EmailContext : DbContext
     {
     }
 
-    public virtual DbSet<User> User { get; set; }
     public virtual DbSet<AuthenticationHistory> AuthenticationHistory { get; set; }
     public virtual DbSet<SendEmailHistory> SendEmailHistory { get; set; }
+    public virtual DbSet<Otp> Otp { get; set; }
+    public virtual DbSet<BlackList> BlackList { get; set; }
+    public virtual DbSet<Setting> Setting { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -29,38 +31,22 @@ public partial class EmailContext : DbContext
     {
         modelBuilder.HasAnnotation("Relational:DefaultSchema", "email");
 
-        modelBuilder.Entity<User>(entity =>
-        {
-            entity.HasKey(e => e.UserId);
-
-            entity.Property(e => e.UserName)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-
-            entity.Property(e => e.Password)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-
-            entity.Property(e => e.Email)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-        });
-
         modelBuilder.Entity<SendEmailHistory>(entity =>
         {
             entity.HasKey(e => e.Id);
 
             entity.Property(e => e.Token)
-                .IsRequired();
+                .IsRequired()
+                .IsUnicode(false);
 
             entity.Property(e => e.Request)
                 .IsRequired()
-                .HasMaxLength(int.MaxValue);
+                .HasMaxLength(int.MaxValue)
+                .IsUnicode(true);
 
             entity.Property(e => e.CreatedDate)
                 .HasColumnType("timestamp");
         });
-
 
         modelBuilder.Entity<AuthenticationHistory>(entity =>
         {
@@ -69,8 +55,57 @@ public partial class EmailContext : DbContext
             entity.Property(e => e.Email)
                 .IsRequired();
 
-            entity.Property(e => e.SignInDate)
+            entity.Property(e => e.ReferenceCode)
+                .IsRequired()
+                .IsUnicode(false);
+
+            entity.Property(e => e.RefreshToken)
+                .IsRequired()
+                .IsUnicode(false);
+
+            entity.Property(e => e.Expired)
                 .HasColumnType("timestamp");
+        });
+
+        modelBuilder.Entity<Otp>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Code)
+                .HasMaxLength(5)
+                .IsUnicode(false);
+
+            entity.Property(e => e.Email)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+            entity.Property(e => e.ReferenceCode)
+                .HasMaxLength(15)
+                .IsUnicode(false);
+
+            entity.Property(e => e.Expired)
+                .HasColumnType("timestamp");
+
+            entity.Property(e => e.InvalidCount)
+                .HasDefaultValue(0);
+        });
+
+        modelBuilder.Entity<BlackList>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Email)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Setting>(entity =>
+        {
+            entity.HasKey(e => e.Key);
+
+            entity.Property(e => e.Value)
+                .HasMaxLength(100)
+                .IsUnicode(false);
         });
 
         OnModelCreatingPartial(modelBuilder);

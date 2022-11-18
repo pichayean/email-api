@@ -1,3 +1,4 @@
+using email_api.Database;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
@@ -10,11 +11,13 @@ public class EmailSender
 {
     private readonly StmpSettings _settings;
     private readonly SendingEmail _sendingEmail;
+    private readonly EmailContext _emailContext;
 
     public EmailSender(SendingEmail sendingEmail
-        , StmpSettings settings)
+        , StmpSettings settings, EmailContext emailContext)
     {
         _sendingEmail = sendingEmail;
+        _emailContext = emailContext;
         _settings = settings;
     }
 

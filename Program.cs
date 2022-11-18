@@ -2,10 +2,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddAppCors()
     .AddEndpointsApiExplorer()
-    .AddDatabase(builder.Configuration)
     .AddJwtAuthentication(builder.Configuration)
     .AddAuthorization()
     .AddSwaggerGen()
+    .AddDatabase(builder.Configuration)
     .AddTransient<IApi, EmailApi>()
     .AddTransient<IApi, SecurityApi>()
     .AddTransient<IApi, HealthApi>();
@@ -20,6 +20,12 @@ app.UseAppCors()
 var apis = app.Services.GetServices<IApi>();
 foreach (var api in apis)
     api.Register(app);
-app.Run();
+
+
+// services.AddSingleton<CustomerIdentitySettings>(serviceProvider =>
+//   {
+//       return serviceProvider.GetRequiredService<ISettingService>().LoadSettingAsync<CustomerIdentitySettings>().Result;
+//   });
+
 // app.Urls.Add($"http://localhost:{builder.Configuration["Port"]}");
 app.Run();

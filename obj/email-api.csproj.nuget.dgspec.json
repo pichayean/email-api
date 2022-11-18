@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj": {}
+    "D:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj": {}
   },
   "projects": {
-    "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj": {
+    "D:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
+        "projectUniqueName": "D:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
         "projectName": "email-api",
-        "projectPath": "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
+        "projectPath": "D:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
         "packagesPath": "D:\\Users\\cf303425\\.nuget\\packages\\",
-        "outputPath": "d:\\Workspace\\@github#pichayean\\email-api\\obj\\",
+        "outputPath": "D:\\Workspace\\@github#pichayean\\email-api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -56,29 +56,17 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.7, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[3.1.12, )"
+              "version": "[7.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.7, )"
-            },
-            "Microsoft.Extensions.Caching.StackExchangeRedis": {
-              "target": "Package",
-              "version": "[5.0.1, )"
-            },
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
-              "target": "Package",
-              "version": "[3.1.5, )"
+              "version": "[7.0.0, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[5.0.7, )"
+              "version": "[7.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

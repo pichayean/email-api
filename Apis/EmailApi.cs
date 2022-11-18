@@ -14,7 +14,7 @@ public class EmailApi : IApi
 
     private IResult SendEmail(SendingEmail request)
     {
-        (new EmailSender(request, stmpSettings)).Send();
+        // (new EmailSender(request, stmpSettings)).Send();
         return Results.Ok(new { success = true });
     }
 }
