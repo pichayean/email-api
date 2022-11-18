@@ -67,7 +67,7 @@ public class SecurityApi : IApi
         });
     }
 
-    private IResult RequestOTP(EmailContext emailContext, RequestOtpModel request)
+    private IResult RequestOTP(EmailContext emailContext, RequestOtpModel request, Settings setting)
     {
         var backlisted = emailContext.BlackList.Any(_ => _.Email.Equals(request.email));
         if (backlisted)

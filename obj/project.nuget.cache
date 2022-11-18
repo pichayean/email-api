@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yhTgh+GfoRvVJuaKwLNdekdZCGIg0cqwoj4XZpyqpGCLy+lK1E8QZCOPOWn22tlBPURtZn/Hl6ONVmZNqU3ASg==",
+  "dgSpecHash": "py2UoFhh6r0XlHD3xucsN5h2QUKLppMLKCtNJ6H6cwm47I6CdUKPio+Bhv8743Ki8PXu7AOJDerjDgKq+6UkrA==",
   "success": true,
-  "projectFilePath": "D:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
+  "projectFilePath": "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
   "expectedPackageFiles": [
     "D:\\Users\\cf303425\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "D:\\Users\\cf303425\\.nuget\\packages\\mailkit\\3.4.2\\mailkit.3.4.2.nupkg.sha512",

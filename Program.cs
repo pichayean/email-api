@@ -8,8 +8,13 @@ builder.Services
     .AddDatabase(builder.Configuration)
     .AddTransient<IApi, EmailApi>()
     .AddTransient<IApi, SecurityApi>()
-    .AddTransient<IApi, HealthApi>();
+    .AddTransient<IApi, HealthApi>()
+    .AddTransient<ISettingService, SettingLoader>();
 
+builder.Services.AddTransient<Settings>(s =>
+{
+    return s.GetRequiredService<ISettingService>().LoadSettingAsync<Settings>().Result;
+});
 var app = builder.Build();
 app.UseAppCors()
     .UseGlobalExceptionHandler()
