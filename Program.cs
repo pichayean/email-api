@@ -2,19 +2,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddAppCors()
     .AddEndpointsApiExplorer()
-    .AddJwtAuthentication(builder.Configuration)
-    .AddAuthorization()
     .AddSwaggerGen()
     .AddDatabase(builder.Configuration)
     .AddTransient<IApi, EmailApi>()
     .AddTransient<IApi, SecurityApi>()
     .AddTransient<IApi, HealthApi>()
-    .AddTransient<ISettingService, SettingLoader>();
+    .AddTransient<ISettingService, SettingLoader>()
+    .AddJwtAuthentication()
+    .AddAuthorization()
+    .AddSettingsLoader();
 
-builder.Services.AddTransient<Settings>(s =>
-{
-    return s.GetRequiredService<ISettingService>().LoadSettingAsync<Settings>().Result;
-});
 var app = builder.Build();
 app.UseAppCors()
     .UseGlobalExceptionHandler()
@@ -25,12 +22,6 @@ app.UseAppCors()
 var apis = app.Services.GetServices<IApi>();
 foreach (var api in apis)
     api.Register(app);
-
-
-// services.AddSingleton<CustomerIdentitySettings>(serviceProvider =>
-//   {
-//       return serviceProvider.GetRequiredService<ISettingService>().LoadSettingAsync<CustomerIdentitySettings>().Result;
-//   });
 
 // app.Urls.Add($"http://localhost:{builder.Configuration["Port"]}");
 app.Run();

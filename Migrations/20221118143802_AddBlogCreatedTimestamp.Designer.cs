@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using email_api.Database;
@@ -11,9 +12,11 @@ using email_api.Database;
 namespace emailapi.Migrations
 {
     [DbContext(typeof(EmailContext))]
-    partial class EmailContextModelSnapshot : ModelSnapshot
+    [Migration("20221118143802_AddBlogCreatedTimestamp")]
+    partial class AddBlogCreatedTimestamp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,72 +146,67 @@ namespace emailapi.Migrations
                     b.HasData(
                         new
                         {
-                            Key = "Settings.RefreshTokenLifetime",
-                            Value = "8"
-                        },
-                        new
-                        {
-                            Key = "Settings.JwtIssuer",
+                            Key = "Setting.JwtIssuer",
                             Value = "https://trustmacus.com/"
                         },
                         new
                         {
-                            Key = "Settings.JwtAudience",
+                            Key = "Setting.JwtAudience",
                             Value = "https://trustmacus.com/"
                         },
                         new
                         {
-                            Key = "Settings.JwtLifetime",
+                            Key = "Setting.JwtLifetime",
                             Value = "5"
                         },
                         new
                         {
-                            Key = "Settings.JwtSecret",
+                            Key = "Setting.JwtSecret",
                             Value = "5DCF9654C265776ACE7E91DF91D42"
                         },
                         new
                         {
-                            Key = "Settings.StmpSecrectKey",
+                            Key = "Setting.StmpSecrectKey",
                             Value = "xuedchehtcopmzqb"
                         },
                         new
                         {
-                            Key = "Settings.StmpHost",
+                            Key = "Setting.StmpHost",
                             Value = "smtp.gmail.com"
                         },
                         new
                         {
-                            Key = "Settings.StmpPort",
+                            Key = "Setting.StmpPort",
                             Value = "587"
                         },
                         new
                         {
-                            Key = "Settings.StmpUser",
+                            Key = "Setting.StmpUser",
                             Value = "pichayeanyensiri.work@gmail.com"
                         },
                         new
                         {
-                            Key = "Settings.OtpLength",
+                            Key = "Setting.OtpLength",
                             Value = "5"
                         },
                         new
                         {
-                            Key = "Settings.OtpRefCodeLength",
+                            Key = "Setting.OtpRefCodeLength",
                             Value = "15"
                         },
                         new
                         {
-                            Key = "Settings.OtpLifetime",
+                            Key = "Setting.OtpLifetime",
                             Value = "8"
                         },
                         new
                         {
-                            Key = "Settings.OtpInvalidAllowTime",
+                            Key = "Setting.OtpInvalidAllowTime",
                             Value = "3"
                         },
                         new
                         {
-                            Key = "Settings.OtpSuccessCode",
+                            Key = "Setting.OtpSuccessCode",
                             Value = "99"
                         });
                 });

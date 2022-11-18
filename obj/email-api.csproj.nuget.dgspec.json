@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj": {}
+    "/Users/pichayeanyensiri/workspaces/dotnet/email-api/email-api.csproj": {}
   },
   "projects": {
-    "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj": {
+    "/Users/pichayeanyensiri/workspaces/dotnet/email-api/email-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
+        "projectUniqueName": "/Users/pichayeanyensiri/workspaces/dotnet/email-api/email-api.csproj",
         "projectName": "email-api",
-        "projectPath": "d:\\Workspace\\@github#pichayean\\email-api\\email-api.csproj",
-        "packagesPath": "D:\\Users\\cf303425\\.nuget\\packages\\",
-        "outputPath": "d:\\Workspace\\@github#pichayean\\email-api\\obj\\",
+        "projectPath": "/Users/pichayeanyensiri/workspaces/dotnet/email-api/email-api.csproj",
+        "packagesPath": "/Users/pichayeanyensiri/.nuget/packages/",
+        "outputPath": "/Users/pichayeanyensiri/workspaces/dotnet/email-api/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "D:\\Users\\cf303425\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/pichayeanyensiri/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://api-micro-dev.ntl.co.th:8081/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -64,6 +58,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[7.0.0, )"
@@ -91,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/6.0.301/RuntimeIdentifierGraph.json"
         }
       }
     }

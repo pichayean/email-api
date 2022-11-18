@@ -1,5 +1,7 @@
 public class Settings : ISettings
 {
+    public int RefreshTokenLifetime { get; set; }
+
     public string JwtIssuer { get; set; }
     public string JwtAudience { get; set; }
     public int JwtLifetime { get; set; }
@@ -7,7 +9,7 @@ public class Settings : ISettings
 
     public string StmpSecrectKey { get; set; }
     public string StmpHost { get; set; }
-    public string StmpPort { get; set; }
+    public int StmpPort { get; set; }
     public string StmpUser { get; set; }
 
     public int OtpLength { get; set; }

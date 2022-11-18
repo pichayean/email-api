@@ -9,12 +9,12 @@ namespace email_api.Features;
 
 public class EmailSender
 {
-    private readonly StmpSettings _settings;
+    private readonly Settings _settings;
     private readonly SendingEmail _sendingEmail;
     private readonly EmailContext _emailContext;
 
     public EmailSender(SendingEmail sendingEmail
-        , StmpSettings settings, EmailContext emailContext)
+        , Settings settings, EmailContext emailContext)
     {
         _sendingEmail = sendingEmail;
         _emailContext = emailContext;
@@ -35,8 +35,8 @@ public class EmailSender
 
         using (var smtp = new SmtpClient())
         {
-            smtp.Connect(_settings.Stmp, _settings.Port, SecureSocketOptions.StartTls);
-            smtp.Authenticate($"{_settings.EmailUser}", _settings.SecrectKey);
+            smtp.Connect(_settings.StmpHost, _settings.StmpPort, SecureSocketOptions.StartTls);
+            smtp.Authenticate($"{_settings.StmpUser}", _settings.StmpSecrectKey);
             smtp.Send(email);
             smtp.Disconnect(true);
         }

@@ -1,13 +1,12 @@
+using System;
 using email_api.Database;
 
 namespace email_api.Apis;
 public class SecurityApi : IApi
 {
-    private readonly JwtSettings jwtSettings;
 
-    public SecurityApi(IConfiguration configuration)
+    public SecurityApi()
     {
-        this.jwtSettings = configuration.GetSection("Jwt").Get<JwtSettings>();
     }
 
     public void Register(WebApplication app)
@@ -17,7 +16,7 @@ public class SecurityApi : IApi
         app.MapPost("/security/RefreshToken", RefreshToken).RequireAuthorization();
     }
 
-    private IResult OTPVerification(EmailContext emailContext, OtpVerificationModel request)
+    private IResult OTPVerification(EmailContext emailContext, OtpVerificationModel request, Settings settings)
     {
         var backlisted = emailContext.BlackList.Any(_ => _.Email.Equals(request.email));
         if (backlisted)
@@ -28,13 +27,13 @@ public class SecurityApi : IApi
         if (otp is null)
             return Results.Unauthorized();
 
-        if (otp.InvalidCount >= 4)
+        if (otp.InvalidCount >= settings.OtpInvalidAllowTime)
             return Results.Ok(new
             {
                 StatusCode = 401,
                 Message = "Invalid code limit",
             });
-        if (otp.InvalidCount == 99)
+        if (otp.InvalidCount == settings.OtpSuccessCode)
             return Results.Ok(new
             {
                 StatusCode = 200,
@@ -54,7 +53,7 @@ public class SecurityApi : IApi
             Email = request.email,
             RefreshToken = Security.GenerateRefreshToken(),
             ReferenceCode = otp.ReferenceCode,
-            Expired = DateTime.Now.AddDays(10)
+            Expired = DateTime.Now.AddDays(settings.RefreshTokenLifetime)
         };
         emailContext.AuthenticationHistory.Add(authState);
         emailContext.SaveChanges();
@@ -63,7 +62,7 @@ public class SecurityApi : IApi
         {
             RefreshTokenExpired = authState.Expired,
             authState.RefreshToken,
-            AccessToken = Security.GenerateToken(request.email, authState.ReferenceCode, jwtSettings),
+            AccessToken = Security.GenerateToken(request.email, authState.ReferenceCode, settings),
         });
     }
 
@@ -76,10 +75,10 @@ public class SecurityApi : IApi
         var otp = new Otp
         {
             Id = Guid.NewGuid(),
-            Code = Common.RandomCode(5),
+            Code = Common.RandomCode(setting.OtpLength),
             Email = request.email,
-            ReferenceCode = Common.RandomRefCode(15),
-            Expired = DateTime.Now.AddMinutes(5)
+            ReferenceCode = Common.RandomRefCode(setting.OtpRefCodeLength),
+            Expired = DateTime.Now.AddMinutes(setting.OtpLifetime)
         };
         emailContext.Otp.Add(otp);
         emailContext.SaveChanges();
@@ -91,10 +90,10 @@ public class SecurityApi : IApi
         });
     }
 
-    private IResult RefreshToken([FromHeader(Name = "Authorization")] string header, RefreshTokenModel request, EmailContext emailContext)
+    private IResult RefreshToken([FromHeader(Name = "Authorization")] string header, RefreshTokenModel request, EmailContext emailContext, Settings setting)
     {
         var jwt = header.ToString().Split(" ").Last();
-        var principal = Security.GetPrincipalFromExpiredToken(jwt, jwtSettings);
+        var principal = Security.GetPrincipalFromExpiredToken(jwt, setting);
         var referenceCode = principal.Claims.FirstOrDefault(x => x.Type == MacusClaimsIdentity.ReferenceCode);
         var email = principal.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Email);
         var refresh = emailContext.AuthenticationHistory
@@ -106,7 +105,7 @@ public class SecurityApi : IApi
 
         return Results.Ok(new
         {
-            AccessToken = Security.GenerateToken(email.Value, referenceCode.Value, jwtSettings),
+            AccessToken = Security.GenerateToken(email.Value, referenceCode.Value, setting),
         });
     }
 

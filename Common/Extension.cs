@@ -13,16 +13,19 @@ public static class Extensions
         return services.AddCors(options => options.AddPolicy(name: CorsPolicyName, builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
     }
 
-    // public static IServiceCollection AddApis(this IServiceCollection services)
-    // {
-    //     var apis = AppDomain.CurrentDomain.GetAssemblies().SelectMany(s => s.GetTypes()).Where(p => typeof(IApi).IsAssignableFrom(p));
-    //     foreach (var api in apis)
-    //         services.AddTransient(typeof(IApi), api);
-    //     return services;
-    // }
-
-    public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddSettingsLoader(this IServiceCollection services)
     {
+        services.AddTransient<Settings>(s =>
+        {
+            return s.GetRequiredService<ISettingService>().LoadSettingAsync<Settings>().Result;
+        });
+        return services;
+    }
+
+    public static IServiceCollection AddJwtAuthentication(this IServiceCollection services)
+    {
+        var sp = services.BuildServiceProvider();
+        var settings = sp.GetRequiredService<ISettingService>().LoadSettingAsync<Settings>().Result;
         services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -30,7 +33,7 @@ public static class Extensions
             options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
         }).AddJwtBearer(o =>
         {
-            o.TokenValidationParameters = Security.TokenValidationParameters(configuration.GetSection("Jwt").Get<JwtSettings>());
+            o.TokenValidationParameters = Security.TokenValidationParameters(settings);
         });
         return services;
     }

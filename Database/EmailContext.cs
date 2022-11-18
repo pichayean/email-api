@@ -72,7 +72,7 @@ public partial class EmailContext : DbContext
             entity.HasKey(e => e.Id);
 
             entity.Property(e => e.Code)
-                .HasMaxLength(5)
+                .HasMaxLength(20)
                 .IsUnicode(false);
 
             entity.Property(e => e.Email)
@@ -80,7 +80,7 @@ public partial class EmailContext : DbContext
                 .IsUnicode(false);
 
             entity.Property(e => e.ReferenceCode)
-                .HasMaxLength(15)
+                .HasMaxLength(50)
                 .IsUnicode(false);
 
             entity.Property(e => e.Expired)
@@ -105,8 +105,83 @@ public partial class EmailContext : DbContext
 
             entity.Property(e => e.Value)
                 .HasMaxLength(100)
-                .IsUnicode(false);
+                .IsUnicode(false);  
         });
+        modelBuilder.Entity<Setting>()
+        .HasData(
+            new Setting
+            {
+                Key = "Settings.RefreshTokenLifetime",
+                Value = "8"
+            },
+            new Setting
+            {
+                Key = "Settings.JwtIssuer",
+                Value = "https://trustmacus.com/"
+            },
+            new Setting
+            {
+                Key = "Settings.JwtAudience",
+                Value = "https://trustmacus.com/"
+            },
+            new Setting
+            {
+                Key = "Settings.JwtLifetime",
+                Value = "5"
+            },
+            new Setting
+            {
+                Key = "Settings.JwtSecret",
+                Value = "5DCF9654C265776ACE7E91DF91D42"
+            },
+
+            new Setting
+            {
+                Key = "Settings.StmpSecrectKey",
+                Value = "xuedchehtcopmzqb"
+            },
+            new Setting
+            {
+                Key = "Settings.StmpHost",
+                Value = "smtp.gmail.com"
+            },
+            new Setting
+            {
+                Key = "Settings.StmpPort",
+                Value = "587"
+            },
+            new Setting
+            {
+                Key = "Settings.StmpUser",
+                Value = "pichayeanyensiri.work@gmail.com"
+            },
+
+            new Setting
+            {
+                Key = "Settings.OtpLength",
+                Value = "5"
+            },
+            new Setting
+            {
+                Key = "Settings.OtpRefCodeLength",
+                Value = "15"
+            },
+            new Setting
+            {
+                Key = "Settings.OtpLifetime",
+                Value = "8"
+            },
+            new Setting
+            {
+                Key = "Settings.OtpInvalidAllowTime",
+                Value = "3"
+            },
+            new Setting
+            {
+                Key = "Settings.OtpSuccessCode",
+                Value = "99"
+            }
+        );
 
         OnModelCreatingPartial(modelBuilder);
     }

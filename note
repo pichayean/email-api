@@ -1,3 +1,5 @@
 // https://www.npgsql.org/efcore/
 // dotnet ef migrations add InitialMigration
 // dotnet ef database update
+dotnet ef migrations add AddBlogCreatedTimestamp
+dotnet ef database update

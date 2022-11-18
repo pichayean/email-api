@@ -4,9 +4,9 @@ namespace email_api.Features;
 
 public class Security
 {
-    public static string GenerateToken(string email, string referenceCode, JwtSettings jwtSettings)
+    public static string GenerateToken(string email, string referenceCode, Settings jwtSettings)
     {
-        var key = Encoding.ASCII.GetBytes(jwtSettings.Key);
+        var key = Encoding.ASCII.GetBytes(jwtSettings.JwtSecret);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[]
@@ -15,9 +15,9 @@ public class Security
                 new Claim(JwtRegisteredClaimNames.Email, email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             }),
-            Expires = DateTime.UtcNow.AddMinutes(jwtSettings.Expires),
-            Issuer = jwtSettings.Issuer,
-            Audience = jwtSettings.Audience,
+            Expires = DateTime.UtcNow.AddMinutes(jwtSettings.JwtLifetime),
+            Issuer = jwtSettings.JwtIssuer,
+            Audience = jwtSettings.JwtAudience,
             SigningCredentials = new SigningCredentials
             (new SymmetricSecurityKey(key),
             SecurityAlgorithms.HmacSha512Signature)
@@ -29,14 +29,14 @@ public class Security
         // Console.Write(stringToken);
         return stringToken;
     }
-    public static TokenValidationParameters TokenValidationParameters(JwtSettings jwtSettings)
+    public static TokenValidationParameters TokenValidationParameters(Settings jwtSettings)
     {
         return new TokenValidationParameters
         {
-            ValidIssuer = jwtSettings.Issuer,
-            ValidAudience = jwtSettings.Audience,
+            ValidIssuer = jwtSettings.JwtIssuer,
+            ValidAudience = jwtSettings.JwtAudience,
             IssuerSigningKey = new SymmetricSecurityKey
-        (Encoding.UTF8.GetBytes(jwtSettings.Key)),
+        (Encoding.UTF8.GetBytes(jwtSettings.JwtSecret)),
             ValidateIssuer = true,
             ValidateAudience = true,
             ValidateLifetime = true,
@@ -52,7 +52,7 @@ public class Security
         return Convert.ToBase64String(randomNumber);
     }
 
-    public static ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token, JwtSettings jwtSettings)
+    public static ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token, Settings jwtSettings)
     {
         var tokenValidationParameters = TokenValidationParameters(jwtSettings);
 
