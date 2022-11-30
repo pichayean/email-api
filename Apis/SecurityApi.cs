@@ -47,7 +47,7 @@ public class SecurityApi : IApi
             return Results.Unauthorized();
         }
 
-        var authState = new AuthenticationHistory
+        var authState = new RefreshTokenEntity
         {
             Id = Guid.NewGuid(),
             Email = request.email,
@@ -55,7 +55,7 @@ public class SecurityApi : IApi
             ReferenceCode = otp.ReferenceCode,
             Expired = DateTime.Now.AddDays(settings.RefreshTokenLifetime)
         };
-        emailContext.AuthenticationHistory.Add(authState);
+        emailContext.RefreshToken.Add(authState);
         emailContext.SaveChanges();
 
         return Results.Ok(new
@@ -72,7 +72,7 @@ public class SecurityApi : IApi
         if (backlisted)
             return Results.Unauthorized();
 
-        var otp = new Otp
+        var otp = new OtpEntity
         {
             Id = Guid.NewGuid(),
             Code = Common.RandomCode(setting.OtpLength),
@@ -96,7 +96,7 @@ public class SecurityApi : IApi
         var principal = Security.GetPrincipalFromExpiredToken(jwt, setting);
         var referenceCode = principal.Claims.FirstOrDefault(x => x.Type == MacusClaimsIdentity.ReferenceCode);
         var email = principal.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Email);
-        var refresh = emailContext.AuthenticationHistory
+        var refresh = emailContext.RefreshToken
             .FirstOrDefault(_ => _.RefreshToken.Equals(request.refreshToken.ToString())
                 && _.ReferenceCode.Equals(referenceCode.Value)
                 && _.Email.Equals(email.Value));

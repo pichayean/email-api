@@ -17,11 +17,11 @@ public partial class EmailContext : DbContext
     {
     }
 
-    public virtual DbSet<AuthenticationHistory> AuthenticationHistory { get; set; }
-    public virtual DbSet<SendEmailHistory> SendEmailHistory { get; set; }
-    public virtual DbSet<Otp> Otp { get; set; }
-    public virtual DbSet<BlackList> BlackList { get; set; }
-    public virtual DbSet<Setting> Setting { get; set; }
+    public virtual DbSet<RefreshTokenEntity> RefreshToken { get; set; }
+    public virtual DbSet<SendEmailHistoryEntity> SendEmailHistory { get; set; }
+    public virtual DbSet<OtpEntity> Otp { get; set; }
+    public virtual DbSet<BlackListEntity> BlackList { get; set; }
+    public virtual DbSet<SettingEntity> Setting { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -31,7 +31,7 @@ public partial class EmailContext : DbContext
     {
         modelBuilder.HasAnnotation("Relational:DefaultSchema", "email");
 
-        modelBuilder.Entity<SendEmailHistory>(entity =>
+        modelBuilder.Entity<SendEmailHistoryEntity>(entity =>
         {
             entity.HasKey(e => e.Id);
 
@@ -48,7 +48,7 @@ public partial class EmailContext : DbContext
                 .HasColumnType("timestamp");
         });
 
-        modelBuilder.Entity<AuthenticationHistory>(entity =>
+        modelBuilder.Entity<RefreshTokenEntity>(entity =>
         {
             entity.HasKey(e => e.Id);
 
@@ -67,7 +67,7 @@ public partial class EmailContext : DbContext
                 .HasColumnType("timestamp");
         });
 
-        modelBuilder.Entity<Otp>(entity =>
+        modelBuilder.Entity<OtpEntity>(entity =>
         {
             entity.HasKey(e => e.Id);
 
@@ -90,7 +90,7 @@ public partial class EmailContext : DbContext
                 .HasDefaultValue(0);
         });
 
-        modelBuilder.Entity<BlackList>(entity =>
+        modelBuilder.Entity<BlackListEntity>(entity =>
         {
             entity.HasKey(e => e.Id);
 
@@ -99,7 +99,7 @@ public partial class EmailContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<Setting>(entity =>
+        modelBuilder.Entity<SettingEntity>(entity =>
         {
             entity.HasKey(e => e.Key);
 
@@ -107,76 +107,76 @@ public partial class EmailContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false);  
         });
-        modelBuilder.Entity<Setting>()
+        modelBuilder.Entity<SettingEntity>()
         .HasData(
-            new Setting
+            new SettingEntity
             {
                 Key = "Settings.RefreshTokenLifetime",
                 Value = "8"
             },
-            new Setting
+            new SettingEntity
             {
                 Key = "Settings.JwtIssuer",
                 Value = "https://trustmacus.com/"
             },
-            new Setting
+            new SettingEntity
             {
                 Key = "Settings.JwtAudience",
                 Value = "https://trustmacus.com/"
             },
-            new Setting
+            new SettingEntity
             {
                 Key = "Settings.JwtLifetime",
                 Value = "5"
             },
-            new Setting
+            new SettingEntity
             {
                 Key = "Settings.JwtSecret",
                 Value = "5DCF9654C265776ACE7E91DF91D42"
             },
 
-            new Setting
+            new SettingEntity
             {
                 Key = "Settings.StmpSecrectKey",
                 Value = "xuedchehtcopmzqb"
             },
-            new Setting
+            new SettingEntity
             {
                 Key = "Settings.StmpHost",
                 Value = "smtp.gmail.com"
             },
-            new Setting
+            new SettingEntity
             {
                 Key = "Settings.StmpPort",
                 Value = "587"
             },
-            new Setting
+            new SettingEntity
             {
                 Key = "Settings.StmpUser",
                 Value = "pichayeanyensiri.work@gmail.com"
             },
 
-            new Setting
+            new SettingEntity
             {
                 Key = "Settings.OtpLength",
                 Value = "5"
             },
-            new Setting
+            new SettingEntity
             {
                 Key = "Settings.OtpRefCodeLength",
                 Value = "15"
             },
-            new Setting
+            new SettingEntity
             {
                 Key = "Settings.OtpLifetime",
                 Value = "8"
             },
-            new Setting
+            new SettingEntity
             {
                 Key = "Settings.OtpInvalidAllowTime",
                 Value = "3"
             },
-            new Setting
+            new SettingEntity
             {
                 Key = "Settings.OtpSuccessCode",
                 Value = "99"

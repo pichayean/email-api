@@ -2,9 +2,8 @@
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 namespace email_api.Database;
-public partial class SendEmailHistory
+public partial class SendEmailHistoryEntity:BaseEntity
 {
-    public Guid Id { get; set; }
     public string Token { get; set; }
     public string Request { get; set; }
     public DateTime CreatedDate { get; set; }

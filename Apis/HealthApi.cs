@@ -1,8 +1,9 @@
+using System.Security.Cryptography;
 namespace email_api.Apis;
 public class HealthApi : IApi
 {
 
-    public HealthApi(IConfiguration configuration)
+    public HealthApi()
     {
     }
 
@@ -12,5 +13,6 @@ public class HealthApi : IApi
         {
             return Results.Ok(new { success = true });
         });
+
     }
 }

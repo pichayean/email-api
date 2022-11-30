@@ -4,10 +4,11 @@ builder.Services
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
     .AddDatabase(builder.Configuration)
+    .AddRedis(builder.Configuration)
     .AddTransient<IApi, EmailApi>()
     .AddTransient<IApi, SecurityApi>()
     .AddTransient<IApi, HealthApi>()
-    .AddTransient<ISettingService, SettingLoader>()
+    .AddScoped<ISettingService, SettingLoader>()
     .AddJwtAuthentication()
     .AddAuthorization()
     .AddSettingsLoader();
@@ -19,9 +20,7 @@ app.UseAppCors()
     .UseSwaggerUI()
     .UseAuthentication()
     .UseAuthorization();
-var apis = app.Services.GetServices<IApi>();
-foreach (var api in apis)
-    api.Register(app);
+app.UseApis();
 
 // app.Urls.Add($"http://localhost:{builder.Configuration["Port"]}");
 app.Run();

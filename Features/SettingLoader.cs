@@ -1,5 +1,8 @@
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Text;
 using email_api.Database;
+using Microsoft.Extensions.Caching.Distributed;
 
 public interface ISettingService
 {
@@ -11,24 +14,45 @@ public interface ISettings
 public class SettingLoader : ISettingService
 {
     private readonly EmailContext _emailContext;
-    public SettingLoader(EmailContext emailContext)
+    private readonly IDistributedCache _distributedCache;
+    private IList<SettingEntity> _allSettings;
+    public SettingLoader(EmailContext emailContext, IDistributedCache distributedCache)
     {
         _emailContext = emailContext;
+        _distributedCache = distributedCache;
     }
 
-    public IList<Setting> GetSettings()
+    private async Task<IList<SettingEntity>> GetSettingsAsync()
     {
-        return _emailContext.Setting.ToList(); ;
+        Stopwatch watch = new Stopwatch();
+        watch.Start();
+        var cacheKey = "__settings.all__";
+        var settings = await _distributedCache.GetAsync(cacheKey);
+        if (settings is null)
+        {
+            var setting = _emailContext.Setting.ToList();
+            await _distributedCache.SetAsync(cacheKey, System.Text.Encoding.UTF8.GetBytes(JsonSerializer.Serialize(setting)), new DistributedCacheEntryOptions
+            {
+                AbsoluteExpiration = DateTime.Now.AddDays(10)
+            });
+            watch.Stop();
+            Console.WriteLine(string.Format("Database Finished in {0} seconds", watch.Elapsed.TotalSeconds.ToString()));
+            return setting;
+        }
+
+        watch.Stop();
+        Console.WriteLine(string.Format("Cache Finished in {0} seconds", watch.Elapsed.TotalSeconds.ToString()));
+        return JsonSerializer.Deserialize<List<SettingEntity>>(System.Text.Encoding.UTF8.GetString(settings));
     }
 
     public async Task<T> GetSettingValueByKey<T>(string key, T defaultValue = default)
     {
         if (string.IsNullOrEmpty(key))
             return defaultValue;
-
-        var allSettings = GetSettings();
+        if (_allSettings is null)
+            _allSettings = await GetSettingsAsync();
         key = key.Trim().ToLowerInvariant();
-        var settingByKey = allSettings.FirstOrDefault(s => s.Key.Equals(key, StringComparison.OrdinalIgnoreCase));
+        var settingByKey = _allSettings.FirstOrDefault(s => s.Key.Equals(key, StringComparison.OrdinalIgnoreCase));
         if (settingByKey == null)
             return defaultValue;
 

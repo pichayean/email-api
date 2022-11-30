@@ -1,6 +1,5 @@
 namespace email_api.Database;
-public partial class BlackList
+public partial class BlackListEntity:BaseEntity
 {
-    public Guid Id { get; set; }
     public string Email { get; set; }
 }

@@ -12,8 +12,8 @@ using email_api.Database;
 namespace emailapi.Migrations
 {
     [DbContext(typeof(EmailContext))]
-    [Migration("20221118150521_AddSettings2")]
-    partial class AddSettings2
+    [Migration("20221124063722_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,35 +26,7 @@ namespace emailapi.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("email_api.Database.AuthenticationHistory", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("Expired")
-                        .HasColumnType("timestamp");
-
-                    b.Property<string>("ReferenceCode")
-                        .IsRequired()
-                        .IsUnicode(false)
-                        .HasColumnType("text");
-
-                    b.Property<string>("RefreshToken")
-                        .IsRequired()
-                        .IsUnicode(false)
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AuthenticationHistory", "email");
-                });
-
-            modelBuilder.Entity("email_api.Database.BlackList", b =>
+            modelBuilder.Entity("email_api.Database.BlackListEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,7 +42,7 @@ namespace emailapi.Migrations
                     b.ToTable("BlackList", "email");
                 });
 
-            modelBuilder.Entity("email_api.Database.Otp", b =>
+            modelBuilder.Entity("email_api.Database.OtpEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -104,7 +76,35 @@ namespace emailapi.Migrations
                     b.ToTable("Otp", "email");
                 });
 
-            modelBuilder.Entity("email_api.Database.SendEmailHistory", b =>
+            modelBuilder.Entity("email_api.Database.RefreshTokenEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Expired")
+                        .HasColumnType("timestamp");
+
+                    b.Property<string>("ReferenceCode")
+                        .IsRequired()
+                        .IsUnicode(false)
+                        .HasColumnType("text");
+
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .IsUnicode(false)
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RefreshToken", "email");
+                });
+
+            modelBuilder.Entity("email_api.Database.SendEmailHistoryEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -129,10 +129,13 @@ namespace emailapi.Migrations
                     b.ToTable("SendEmailHistory", "email");
                 });
 
-            modelBuilder.Entity("email_api.Database.Setting", b =>
+            modelBuilder.Entity("email_api.Database.SettingEntity", b =>
                 {
                     b.Property<string>("Key")
                         .HasColumnType("text");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Value")
                         .HasMaxLength(100)
@@ -147,71 +150,85 @@ namespace emailapi.Migrations
                         new
                         {
                             Key = "Settings.RefreshTokenLifetime",
+                            Id = new Guid("00000000-0000-0000-0000-000000000000"),
                             Value = "8"
                         },
                         new
                         {
                             Key = "Settings.JwtIssuer",
+                            Id = new Guid("00000000-0000-0000-0000-000000000000"),
                             Value = "https://trustmacus.com/"
                         },
                         new
                         {
                             Key = "Settings.JwtAudience",
+                            Id = new Guid("00000000-0000-0000-0000-000000000000"),
                             Value = "https://trustmacus.com/"
                         },
                         new
                         {
                             Key = "Settings.JwtLifetime",
+                            Id = new Guid("00000000-0000-0000-0000-000000000000"),
                             Value = "5"
                         },
                         new
                         {
                             Key = "Settings.JwtSecret",
+                            Id = new Guid("00000000-0000-0000-0000-000000000000"),
                             Value = "5DCF9654C265776ACE7E91DF91D42"
                         },
                         new
                         {
                             Key = "Settings.StmpSecrectKey",
+                            Id = new Guid("00000000-0000-0000-0000-000000000000"),
                             Value = "xuedchehtcopmzqb"
                         },
                         new
                         {
                             Key = "Settings.StmpHost",
+                            Id = new Guid("00000000-0000-0000-0000-000000000000"),
                             Value = "smtp.gmail.com"
                         },
                         new
                         {
                             Key = "Settings.StmpPort",
+                            Id = new Guid("00000000-0000-0000-0000-000000000000"),
                             Value = "587"
                         },
                         new
                         {
                             Key = "Settings.StmpUser",
+                            Id = new Guid("00000000-0000-0000-0000-000000000000"),
                             Value = "pichayeanyensiri.work@gmail.com"
                         },
                         new
                         {
                             Key = "Settings.OtpLength",
+                            Id = new Guid("00000000-0000-0000-0000-000000000000"),
                             Value = "5"
                         },
                         new
                         {
                             Key = "Settings.OtpRefCodeLength",
+                            Id = new Guid("00000000-0000-0000-0000-000000000000"),
                             Value = "15"
                         },
                         new
                         {
                             Key = "Settings.OtpLifetime",
+                            Id = new Guid("00000000-0000-0000-0000-000000000000"),
                             Value = "8"
                         },
                         new
                         {
                             Key = "Settings.OtpInvalidAllowTime",
+                            Id = new Guid("00000000-0000-0000-0000-000000000000"),
                             Value = "3"
                         },
                         new
                         {
                             Key = "Settings.OtpSuccessCode",
+                            Id = new Guid("00000000-0000-0000-0000-000000000000"),
                             Value = "99"
                         });
                 });
